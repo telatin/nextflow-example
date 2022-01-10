@@ -3,7 +3,6 @@
  */
 
 nextflow.enable.dsl = 2
-
 params.reads = "$baseDir/illumina/*_R{1,2}.fastq.gz"
 params.outdir = "$baseDir/denovo"
 
