@@ -15,6 +15,11 @@ scheduler, such as Slurm or PBS), or to the cloud!
 A simple workflow to assemble prokaryotic genomes, annotate them with Prokka, and
 gathering statistics to prepare a MultiQC report.
 
+This typical workflow processes a set of multiple samples (filtering, assemblying,
+annotating), while for other steps will collect multiple outputs to produce
+a summary (QUAST for assemblys statistics, MultiQC report).
+
+![De novo assembly workflow](imgs/denovo-scheme.png)
 
 ## Learning Nextflow
 
