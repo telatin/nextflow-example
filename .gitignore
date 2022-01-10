@@ -6,3 +6,5 @@ ont
 *.simg
 .nextflow.log*
 .nextflow/*
+data
+SRR12*

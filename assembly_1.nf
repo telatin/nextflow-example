@@ -28,7 +28,7 @@ reads = Channel
         
 // prints to the screen and to the log
 log.info """
-         RNAquant Pipeline
+         Denovo Pipeline
          ===================================
          reads        : ${params.reads}
          outdir       : ${params.outdir}

@@ -25,3 +25,4 @@ a summary (QUAST for assemblys statistics, MultiQC report).
 
 * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html), blog post by Evan Floden & Alain Coletta
 * [nf-core community](https://nf-co.re/), a set of high quality bioinformatics pipeline backed by a fantastic community
+* [Video: introduction to MultiQC](https://www.youtube.com/watch?v=BbScv9TcaMg&ab_channel=PhilEwels)

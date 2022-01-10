@@ -2,10 +2,11 @@
  *   An assembly pipeline in Nextflow DSL2
  *   -----------------------------------------
 
- This version adds support for Prokka in the MultiQC
- pipeline. This requires a change in the MultiQC step
- to force the use of Prokka filename as sample ID
- (otherwise MultiQC uses the Genus/Species from Prokka) 
+ == V2 ==
+ This version collects the results from the assembly
+ to make the Quast report.
+ Moreover collects the results from Quast and Fastp
+ to generate a MultiQC report.
 
 
  */
@@ -29,7 +30,7 @@ reads = Channel
         
 // prints to the screen and to the log
 log.info """
-         RNAquant Pipeline
+         Denovo Pipeline
          ===================================
          reads        : ${params.reads}
          outdir       : ${params.outdir}
