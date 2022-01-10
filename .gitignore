@@ -1,0 +1,8 @@
+work/
+denovo
+illumina
+shotgun
+ont
+*.simg
+.nextflow.log*
+.nextflow/*
