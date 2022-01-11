@@ -15,7 +15,7 @@
  */
 
 nextflow.enable.dsl = 2
-params.reads = "$baseDir/illumina/*_R{1,2}.fastq.gz"
+params.reads = "$baseDir/data/*_R{1,2}.fastq.gz"
 params.outdir = "$baseDir/denovo"
 
 
@@ -28,7 +28,7 @@ reads = Channel
         
 // prints to the screen and to the log
 log.info """
-         Denovo Pipeline
+         Denovo Pipeline (version 1)
          ===================================
          reads        : ${params.reads}
          outdir       : ${params.outdir}
@@ -55,7 +55,7 @@ process fastp {
     """
     fastp -i ${reads[0]} -I ${reads[1]} \\
       -o ${sample_id}_filt_R1.fastq.gz -O ${sample_id}_filt_R2.fastq.gz \\
-      --detect_adapter_for_pe -w ${task.cpus} -j report.json
+      --detect_adapter_for_pe -w ${task.cpus} -j ${sample_id}.fastp.json
  
     """  
 }  

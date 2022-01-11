@@ -16,7 +16,7 @@
 
 
 nextflow.enable.dsl = 2
-params.reads = "$baseDir/illumina/*_R{1,2}.fastq.gz"
+params.reads = "$baseDir/data/*_R{1,2}.fastq.gz"
 params.outdir = "$baseDir/denovo"
 
 
@@ -29,7 +29,7 @@ reads = Channel
         
 // prints to the screen and to the log
 log.info """
-         Denovo Pipeline
+         Denovo Pipeline (version 4)
          ===================================
          reads        : ${params.reads}
          outdir       : ${params.outdir}
