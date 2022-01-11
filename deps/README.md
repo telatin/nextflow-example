@@ -60,7 +60,17 @@ To build the image:
 ```bash
 sudo singularity build container.simg definition.def
 ```
+## Converting an environment to a Docker image
 
+A dockerfile is provided, that can be built with:
+
+```bash
+# We can call the image "denovo", tagging it as last version
+sudo docker build -t denovo:latest .
+
+# Test any tool like:
+sudo docker run --rm denovo:latest abricate -h
+```
 ## A different approach: nf-core modules
 
 DSL2 enabled a modular approach, and the ["nf-core" organization](https://nf-co.re/)
