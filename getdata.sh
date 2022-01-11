@@ -8,12 +8,16 @@ fi
 set -euo pipefail
 mkdir -p data
 
-if [[ ! -e "data/SRR12825099_R1.fq.gz" ]];
+if [[ ! -e "data/SRR12825099_R1.fastq.gz" ]];
 then
     echo "[1] Downloading small dataset"
     curl --silent -L -o  smalldataset.tar.gz https://github.com/telatin/nextflow-example/releases/download/v0.1.0/smalldataset.tar.gz
     tar xfz smalldataset.tar.gz
     mv input/*.gz data/
+    for i in data/*.fq.gz;
+    do
+      mv $i ${i/fq/fastq}
+    done
     rm -rf input smalldataset.tar.gz
 else
     echo "Warning: Small dataset already downloaded."
