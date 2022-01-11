@@ -2,20 +2,18 @@
  *   An assembly pipeline in Nextflow DSL2
  *   -----------------------------------------
 
- == V2 ==
- This version collects the results from the assembly
- to make the Quast report.
- Moreover collects the results from Quast and Fastp
- to generate a MultiQC report.
- 
+ == V4 ==
+ This version adds Abricate for AMR detection,
+ and the use of a custom script placed in the
+ ./bin/ directory.
 
 
  */
-
 
 /* 
  *   Input parameters 
  */
+
 
 nextflow.enable.dsl = 2
 params.reads = "$baseDir/illumina/*_R{1,2}.fastq.gz"
@@ -111,7 +109,46 @@ process prokka {
 
     script:
     """
-    prokka --cpus ${task.cpus} --fast --outdir ${sample_id} --prefix ${sample_id} ${assembly}
+    prokka --cpus ${task.cpus} --fast --outdir ${sample_id} --prefix ${sample_id} ${assembly} --
+    """
+}
+
+process abricate {
+    tag { sample_id }
+    
+    publishDir "$params.outdir/abricate/", 
+        mode: 'copy'
+    
+    input:
+    tuple val(sample_id), path(assembly)  
+    
+    
+    output:
+    tuple val(sample_id), path("${sample_id}.tab")
+
+    script:
+    """
+    abricate --threads ${task.cpus}  ${assembly} > ${sample_id}.tab
+    """
+}
+
+process abricate_summary {
+    tag { sample_id }
+    
+    publishDir "$params.outdir/abricate/", 
+        mode: 'copy'
+
+    input:
+    path("*")
+
+    output:
+    path("summary.tsv")
+    path("abricate_mqc.tsv"), emit: multiqc
+
+    script:
+    """
+    abricate --summary *.tab > summary.tsv
+    abricateToMqc.py -i summary.tsv -o abricate_mqc.tsv
     """
 }
 
@@ -133,18 +170,19 @@ process quast  {
     quast --threads ${task.cpus} --output-dir quast *.fa
     """
 }
+
 process multiqc {
     publishDir params.outdir, mode:'copy'
        
     input:
-    path '*' //from quant_ch.mix(fastqc_ch).collect()
+    path '*'  
     
     output:
     path 'multiqc_*'
      
     script:
     """
-    multiqc . 
+    multiqc --cl_config "prokka_fn_snames: True" . 
     """
 } 
 
@@ -152,7 +190,16 @@ workflow {
     
     fastp( reads )
     assembly( fastp.out.reads )
+    abricate( assembly.out )
     prokka( assembly.out )
+    
+    // QUAST requires all the contigs to be in the same directory
     quast( assembly.out.map{it -> it[1]}.collect() )
-    multiqc( fastp.out.json.mix( quast.out ).collect() )
+
+    // Prepare the summary of Abricate
+    abricate_summary( abricate.out.map{it -> it[1]}.collect() )
+
+    // Collect all the relevant file for MultiQC
+    multiqc( fastp.out.json.mix( quast.out , prokka.out, abricate_summary.out.multiqc).collect() )
+    
 }
