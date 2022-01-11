@@ -1,9 +1,23 @@
 /* 
+ *   An assembly pipeline in Nextflow DSL2
+ *   -----------------------------------------
+
+ == V3 ==
+ This version adds support for Prokka in the MultiQC
+ pipeline. This requires a change in the MultiQC step
+ to force the use of Prokka filename as sample ID
+ (otherwise MultiQC uses the Genus/Species from Prokka) 
+
+
+ */
+
+/* 
  *   Input parameters 
  */
 
+
 nextflow.enable.dsl = 2
-params.reads = "$baseDir/data/*_R{1,2}.fastq.gz"
+params.reads = "$baseDir/illumina/*_R{1,2}.fastq.gz"
 params.outdir = "$baseDir/denovo"
 
 
@@ -78,25 +92,7 @@ process assembly {
     """
 }
 
-process quastSingle {
-    tag { sample_id }
-    
-    publishDir "$params.outdir/quast/", 
-        mode: 'copy'
-    
-    input:
-    tuple val(sample_id), path(assembly)  
-    
-    
-    output:
-    //tuple val(sample_id), path("${sample_id}/report.{pdf,html}")
-    path("${sample_id}")
 
-    script:
-    """
-    quast --threads ${task.cpus} --output-dir ${sample_id} ${assembly}
-    """
-}
 
 process prokka {
     tag { sample_id }
@@ -114,7 +110,7 @@ process prokka {
 
     script:
     """
-    prokka --cpus ${task.cpus} --fast --outdir ${sample_id} --prefix ${sample_id} ${assembly}
+    prokka --cpus ${task.cpus} --fast --outdir ${sample_id} --prefix ${sample_id} ${assembly} --
     """
 }
 
@@ -147,14 +143,16 @@ process multiqc {
      
     script:
     """
-    multiqc . 
+    multiqc --cl_config "prokka_fn_snames: True" . 
     """
 } 
 
-workflow {    
+workflow {
+    
     fastp( reads )
     assembly( fastp.out.reads )
     prokka( assembly.out )
     quast( assembly.out.map{it -> it[1]}.collect() )
-    multiqc( fastp.out.json.mix( quast.out ).collect() )
+    multiqc( fastp.out.json.mix( quast.out , prokka.out ).collect() )
+    //println fastp.out.json.mix( quast.out, prokka.out ).collect().view()
 }
