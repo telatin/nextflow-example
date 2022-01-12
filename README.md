@@ -10,7 +10,7 @@ Nextflow has a very strong support for different execution systems, so that you 
 test your pipeline locally, but then deploy it in your cluster (using the installed
 scheduler, such as Slurm or PBS), or to the cloud!
 
-:right_arrow: [Written tutorial](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
+:arrow_right: [Written tutorial](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
 
 ## What are we doing
 
