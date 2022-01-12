@@ -1,7 +1,0 @@
-Module	Section	Sample Name	Source
-QUAST	all_sections	GCA009944615	/qi/isp/climb/work/1e/bb26e63df50055ab93b23aeaf1deb5/quast/report.tsv
-QUAST	all_sections	SRR12825099	/qi/isp/climb/work/1e/bb26e63df50055ab93b23aeaf1deb5/quast/report.tsv
-QUAST	all_sections	T7	/qi/isp/climb/work/1e/bb26e63df50055ab93b23aeaf1deb5/quast/report.tsv
-fastp	all_sections	GCA009944615	/qi/isp/climb/work/1e/bb26e63df50055ab93b23aeaf1deb5/GCA009944615.fastp.json
-fastp	all_sections	SRR12825099	/qi/isp/climb/work/1e/bb26e63df50055ab93b23aeaf1deb5/SRR12825099.fastp.json
-fastp	all_sections	T7	/qi/isp/climb/work/1e/bb26e63df50055ab93b23aeaf1deb5/T7.fastp.json
