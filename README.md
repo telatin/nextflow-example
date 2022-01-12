@@ -10,6 +10,8 @@ Nextflow has a very strong support for different execution systems, so that you 
 test your pipeline locally, but then deploy it in your cluster (using the installed
 scheduler, such as Slurm or PBS), or to the cloud!
 
+:right_arrow: [Written tutorial](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
+
 ## What are we doing
 
 A simple workflow to assemble prokaryotic genomes, annotate them with Prokka, and
@@ -19,7 +21,7 @@ This typical workflow processes a set of multiple samples (filtering, assemblyin
 annotating), while for other steps will collect multiple outputs to produce
 a summary (QUAST for assemblys statistics, MultiQC report).
 
-![De novo assembly workflow](imgs/denovo-scheme.png)
+[![De novo assembly workflow](imgs/denovo-scheme.png)](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
 
 ## Learning Nextflow
 
