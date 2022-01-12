@@ -1,0 +1,1 @@
+Some scripts to start playing with Nextflow

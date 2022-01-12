@@ -1,0 +1,22 @@
+Assembly	GCA009944615	SRR12825099	T7
+# contigs (>= 0 bp)	1	1	1
+# contigs (>= 1000 bp)	1	1	1
+# contigs (>= 5000 bp)	1	1	1
+# contigs (>= 10000 bp)	1	0	1
+# contigs (>= 25000 bp)	1	0	1
+# contigs (>= 50000 bp)	1	0	0
+Total length (>= 0 bp)	89214	6110	39869
+Total length (>= 1000 bp)	89214	6110	39869
+Total length (>= 5000 bp)	89214	6110	39869
+Total length (>= 10000 bp)	89214	0	39869
+Total length (>= 25000 bp)	89214	0	39869
+Total length (>= 50000 bp)	89214	0	0
+# contigs	1	1	1
+Largest contig	89214	6110	39869
+Total length	89214	6110	39869
+GC (%)	59.02	54.04	48.38
+N50	89214	6110	39869
+N75	89214	6110	39869
+L50	1	1	1
+L75	1	1	1
+# N's per 100 kbp	0.00	0.00	0.00

@@ -1,0 +1,103 @@
+locus_tag	ftype	length_bp	gene	EC_number	COG	product
+MGEKPHHF_00001	CDS	663				hypothetical protein
+MGEKPHHF_00002	CDS	624	bin3			Putative transposon Tn552 DNA-invertase bin3
+MGEKPHHF_00003	CDS	534				hypothetical protein
+MGEKPHHF_00004	CDS	294				hypothetical protein
+MGEKPHHF_00005	CDS	435				ISL3 family transposase ISStma11
+MGEKPHHF_00006	CDS	213				hypothetical protein
+MGEKPHHF_00007	CDS	639	merB	4.99.1.2		Alkylmercury lyase
+MGEKPHHF_00008	CDS	366				hypothetical protein
+MGEKPHHF_00009	CDS	237				hypothetical protein
+MGEKPHHF_00010	CDS	204				hypothetical protein
+MGEKPHHF_00011	CDS	615				hypothetical protein
+MGEKPHHF_00012	CDS	1218				hypothetical protein
+MGEKPHHF_00013	CDS	909				hypothetical protein
+MGEKPHHF_00014	CDS	1680				hypothetical protein
+MGEKPHHF_00015	CDS	252	parD			Antitoxin ParD
+MGEKPHHF_00016	CDS	312	parE			Toxin ParE
+MGEKPHHF_00017	CDS	465				hypothetical protein
+MGEKPHHF_00018	CDS	1173				hypothetical protein
+MGEKPHHF_00019	CDS	798				IS21 family transposase IS21
+MGEKPHHF_00020	CDS	222				hypothetical protein
+MGEKPHHF_00021	CDS	456	neo_1	2.7.1.95		Aminoglycoside 3'-phosphotransferase
+MGEKPHHF_00022	CDS	822	tnsA			Transposon Tn7 transposition protein TnsA
+MGEKPHHF_00023	CDS	2109	tnsB			Transposon Tn7 transposition protein TnsB
+MGEKPHHF_00024	CDS	1668	tnsC			Transposon Tn7 transposition protein TnsC
+MGEKPHHF_00025	CDS	1527				hypothetical protein
+MGEKPHHF_00026	CDS	1617	tnsE			Transposon Tn7 transposition protein TnsE
+MGEKPHHF_00027	CDS	126				hypothetical protein
+MGEKPHHF_00028	CDS	378				hypothetical protein
+MGEKPHHF_00029	CDS	372				hypothetical protein
+MGEKPHHF_00030	CDS	498				hypothetical protein
+MGEKPHHF_00031	CDS	789	ant1	2.7.7.47		Streptomycin 3''-adenylyltransferase
+MGEKPHHF_00032	CDS	525				hypothetical protein
+MGEKPHHF_00033	CDS	474	dhfrI	1.5.1.3		Dihydrofolate reductase type 1
+MGEKPHHF_00034	CDS	537				hypothetical protein
+MGEKPHHF_00035	CDS	273	neo_2	2.7.1.95		Aminoglycoside 3'-phosphotransferase
+MGEKPHHF_00036	CDS	291				hypothetical protein
+MGEKPHHF_00037	CDS	441	traB_1			Protein TraB
+MGEKPHHF_00038	CDS	3186	traC	2.7.7.-		DNA primase TraC
+MGEKPHHF_00039	CDS	264				hypothetical protein
+MGEKPHHF_00040	CDS	2214				hypothetical protein
+MGEKPHHF_00041	CDS	534				hypothetical protein
+MGEKPHHF_00042	CDS	1908	traG			Conjugal transfer protein TraG
+MGEKPHHF_00043	CDS	2199	traI			Protein TraI
+MGEKPHHF_00044	CDS	372	traJ			Protein TraJ
+MGEKPHHF_00045	CDS	405	traK			Protein TraK
+MGEKPHHF_00046	CDS	726	traL			Protein TraL
+MGEKPHHF_00047	CDS	438	traM			Protein TraM
+MGEKPHHF_00048	CDS	1347				hypothetical protein
+MGEKPHHF_00049	CDS	348	traB_2			Protein TraB
+MGEKPHHF_00050	CDS	927				hypothetical protein
+MGEKPHHF_00051	CDS	528				hypothetical protein
+MGEKPHHF_00052	CDS	504				hypothetical protein
+MGEKPHHF_00053	CDS	1077	korB			Transcriptional repressor protein KorB
+MGEKPHHF_00054	CDS	780	soj	3.6.-.-	COG1192	Chromosome-partitioning ATPase Soj
+MGEKPHHF_00055	CDS	315	trfB			TrfB transcriptional repressor protein
+MGEKPHHF_00056	CDS	954				hypothetical protein
+MGEKPHHF_00057	CDS	1137				TelA-like protein
+MGEKPHHF_00058	CDS	774				hypothetical protein
+MGEKPHHF_00059	CDS	315				hypothetical protein
+MGEKPHHF_00060	CDS	324				hypothetical protein
+MGEKPHHF_00061	CDS	201				hypothetical protein
+MGEKPHHF_00062	CDS	231				hypothetical protein
+MGEKPHHF_00063	CDS	216				hypothetical protein
+MGEKPHHF_00064	CDS	234				hypothetical protein
+MGEKPHHF_00065	CDS	258				hypothetical protein
+MGEKPHHF_00066	CDS	711	klcB_1			Protein KlcB
+MGEKPHHF_00067	CDS	861	bla	3.5.2.6		Beta-lactamase TEM
+MGEKPHHF_00068	CDS	558	tnpR			Transposon Tn3 resolvase
+MGEKPHHF_00069	CDS	3006				Tn3 family transposase Tn2
+MGEKPHHF_00070	CDS	822	klcB_2			Protein KlcB
+MGEKPHHF_00071	CDS	441	klcA			Antirestriction protein KlcA
+MGEKPHHF_00072	CDS	243				hypothetical protein
+MGEKPHHF_00073	CDS	678	tetR			Tetracycline repressor protein class A from transposon 1721
+MGEKPHHF_00074	CDS	1200	tetA			Tetracycline resistance protein, class C
+MGEKPHHF_00075	CDS	1086				hypothetical protein
+MGEKPHHF_00076	CDS	1149	trfA			Plasmid replication initiator protein TrfA
+MGEKPHHF_00077	CDS	351	ssb		COG0629	Single-stranded DNA-binding protein
+MGEKPHHF_00078	CDS	366				hypothetical protein
+MGEKPHHF_00079	CDS	960			COG4962	Putative conjugal transfer protein
+MGEKPHHF_00080	CDS	438				hypothetical protein
+MGEKPHHF_00081	CDS	312				hypothetical protein
+MGEKPHHF_00082	CDS	1125				hypothetical protein
+MGEKPHHF_00083	CDS	2967				Tn3 family transposase TnAs1
+MGEKPHHF_00084	CDS	561	hin		COG1961	DNA-invertase hin
+MGEKPHHF_00085	CDS	1488				hypothetical protein
+MGEKPHHF_00086	CDS	852				hypothetical protein
+MGEKPHHF_00087	CDS	204				hypothetical protein
+MGEKPHHF_00088	CDS	963	yjiK		COG3204	putative protein YjiK
+MGEKPHHF_00089	CDS	1416	virB4		COG3451	Type IV secretion system protein virB4
+MGEKPHHF_00090	CDS	759				hypothetical protein
+MGEKPHHF_00091	CDS	894				hypothetical protein
+MGEKPHHF_00092	CDS	483				hypothetical protein
+MGEKPHHF_00093	CDS	1392				hypothetical protein
+MGEKPHHF_00094	CDS	777				hypothetical protein
+MGEKPHHF_00095	CDS	210				hypothetical protein
+MGEKPHHF_00096	CDS	1587				hypothetical protein
+MGEKPHHF_00097	CDS	600				hypothetical protein
+MGEKPHHF_00098	CDS	705				hypothetical protein
+MGEKPHHF_00099	CDS	264				hypothetical protein
+MGEKPHHF_00100	CDS	735				hypothetical protein
+MGEKPHHF_00101	CDS	420				hypothetical protein
+MGEKPHHF_00102	CDS	597				hypothetical protein

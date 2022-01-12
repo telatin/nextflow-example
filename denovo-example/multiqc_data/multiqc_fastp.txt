@@ -1,0 +1,4 @@
+Sample	command
+GCA009944615	fastp -i GCA009944615.fastq.gz -I GCA009944615_R2.fastq.gz -o GCA009944615_filt.fastq.gz -O GCA009944615_filt_R2.fastq.gz --detect_adapter_for_pe -w 4 -j report.json 
+SRR12825099	fastp -i SRR12825099.fastq.gz -I SRR12825099_R2.fastq.gz -o SRR12825099_filt.fastq.gz -O SRR12825099_filt_R2.fastq.gz --detect_adapter_for_pe -w 4 -j report.json 
+T7	fastp -i T7.fastq.gz -I T7_R2.fastq.gz -o T7_filt.fastq.gz -O T7_filt_R2.fastq.gz --detect_adapter_for_pe -w 4 -j report.json 

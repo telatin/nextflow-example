@@ -1,0 +1,71 @@
+/home/ubuntu/miniconda3/envs/denovo0/bin/quast --threads 4 --output-dir quast GCA009944615.fa SRR12825099.fa T7.fa
+
+Version: 5.0.2
+
+System information:
+  OS: Linux-4.4.0-210-generic-x86_64-with-debian-stretch-sid (linux_64)
+  Python version: 3.7.12
+  CPUs number: 8
+
+Started: 2022-01-12 16:41:05
+
+Logging to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/quast.log
+
+CWD: /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8
+Main parameters: 
+  MODE: default, threads: 4, minimum contig length: 500, minimum alignment length: 65, \
+  ambiguity: one, threshold for extensive misassembly size: 1000
+
+Contigs:
+  Pre-processing...
+  1  GCA009944615.fa ==> GCA009944615
+  2  SRR12825099.fa ==> SRR12825099
+  3  T7.fa ==> T7
+
+2022-01-12 16:41:07
+Running Basic statistics processor...
+  Contig files: 
+    1  GCA009944615
+    2  SRR12825099
+    3  T7
+  Calculating N50 and L50...
+    1  GCA009944615, N50 = 89214, L50 = 1, Total length = 89214, GC % = 59.02, # N's per 100 kbp =  0.00
+    2  SRR12825099, N50 = 6110, L50 = 1, Total length = 6110, GC % = 54.04, # N's per 100 kbp =  0.00
+    3  T7, N50 = 39869, L50 = 1, Total length = 39869, GC % = 48.38, # N's per 100 kbp =  0.00
+  Drawing Nx plot...
+    saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/basic_stats/Nx_plot.pdf
+  Drawing cumulative plot...
+    saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/basic_stats/GC_content_plot.pdf
+  Drawing GCA009944615 GC content plot...
+    saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/basic_stats/GCA009944615_GC_content_plot.pdf
+  Drawing SRR12825099 GC content plot...
+    saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/basic_stats/SRR12825099_GC_content_plot.pdf
+  Drawing T7 GC content plot...
+    saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/basic_stats/T7_GC_content_plot.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2022-01-12 16:41:09
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating Icarus viewers...
+  2 of 2: Creating PDF with all tables and plots...
+Done
+
+2022-01-12 16:41:11
+RESULTS:
+  Text versions of total report are saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/report.html
+  PDF version (tables and plots) is saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/report.pdf
+  Icarus (contig browser) is saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/icarus.html
+  Log is saved to /qi/isp/climb/work/ca/858462b8a854b088542039ad5501a8/quast/quast.log
+
+Finished: 2022-01-12 16:41:11
+Elapsed time: 0:00:05.530560
+NOTICEs: 1; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!
