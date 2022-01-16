@@ -30,6 +30,10 @@ process minreads {
 }
 ```
 
+Note that when you only have one channel it's usually cleaner to avoid the "emit", as it would be unambiguously
+`minreads.out`, but since it might be not obvious that `optional true` should be put at the end, even after the
+_emit_, we named the only output channel as well.
+
 If we run this workflow (from the root directory) as:
 
 ```bash
