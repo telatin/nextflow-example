@@ -18,7 +18,7 @@
 nextflow.enable.dsl = 2
 params.reads = "$baseDir/data/*_R{1,2}.fastq.gz"
 params.outdir = "$baseDir/denovo"
-
+params.minreads = 10 // just a very low default
 
 /* 
  *   DSL2 allows to reuse channels

@@ -18,6 +18,7 @@
 nextflow.enable.dsl = 2
 params.reads = "$baseDir/data/*_R{1,2}.fastq.gz"
 params.outdir = "$baseDir/denovo"
+params.minreads = 1000
 params.use_spades = false
 
 /* 
@@ -37,29 +38,7 @@ log.info """
          .stripIndent()
  
 
-
-process minreads {
-    tag "filter $sample_id"
-
-    input:
-    tuple val(sample_id), path(reads) 
-    val(min)
-    
-    output:
-    tuple val(sample_id), path("pass/${sample_id}_R*.fastq.gz"), emit: reads optional true 
-    
-    script:
-    """
-    TOT=\$(seqfu count ${reads[0]} ${reads[1]} | cut -f 2 )
-    mkdir -p pass
-    if [[ \$TOT -gt ${min} ]]; then
-        mv ${reads[0]} pass/${sample_id}_R1.fastq.gz
-        mv ${reads[1]} pass/${sample_id}_R2.fastq.gz
-    fi
-    
-    """
-}
-
+ 
 process fastp {
     /* 
        fastp process to remove adapters and low quality sequences
@@ -113,6 +92,7 @@ process shovill {
     """
 }
 
+
 process spades {
     /* 
        assembly step. here we used a conditional logic to choose the assembler
@@ -132,7 +112,7 @@ process spades {
     script:
     """
     spades.py -1 ${reads[0]} -2 ${reads[1]} -o spades -t ${task.cpus}
-    mv spades/contigs.fa ${sample_id}.fa
+    mv spades/contigs.fasta ${sample_id}.fa
     """
 }
 
@@ -231,25 +211,26 @@ process multiqc {
 } 
 
 workflow {
-    minreads( reads, params.minreads )
-    fastp( minreads.out.reads )
-    
-    if params.use_spades == "true" {
+    fastp( reads )
+ 
+    if (params.use_spades == true) {
+        
         assembly = spades( fastp.out.reads )
     } else {
+        
         assembly = shovill( fastp.out.reads )
     }
     
-    abricate( assembly.out )
-    prokka( assembly.out )
+    abricate( assembly )
+    prokka( assembly )
     
     // QUAST requires all the contigs to be in the same directory
-    quast( assembly.out.map{it -> it[1]}.collect() )
+    quast( assembly.map{it -> it[1]}.collect() )
 
     // Prepare the summary of Abricate
     abricate_summary( abricate.out.map{it -> it[1]}.collect() )
 
     // Collect all the relevant file for MultiQC
     multiqc( fastp.out.json.mix( quast.out , prokka.out, abricate_summary.out.multiqc).collect() )
-    
+ 
 }
