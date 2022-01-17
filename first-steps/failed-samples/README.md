@@ -1,5 +1,8 @@
 # How to stop failed samples
 
+:warning: This example uses [seqfu](https://telatin.github.io/seqfu2/)
+to count the reads, so you will need to install SeqFu in your environment if you want to give this eaxmple a go.
+
 Our processes define their input and output files. What if the process is not able to produce the output file?
 In this case the workflow would fail, as the _expected_ output file is not found.
 
@@ -37,7 +40,7 @@ _emit_, we named the only output channel as well.
 If we run this workflow (from the root directory) as:
 
 ```bash
-nextflow run first-steps/failed-samples/assembly_4.nf --minreads 40000 --reads "data/*_R{1,2}.fastq.gz"
+nextflow run first-steps/failed-samples/main.nf --minreads 40000 --reads "data/*_R{1,2}.fastq.gz"
 ```
 only one sample would _survive_ the initial filter, but the pipeline would continue happily with the
 `fastp` process:

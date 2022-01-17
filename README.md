@@ -10,7 +10,7 @@ Nextflow has a very strong support for different execution systems, so that you 
 test your pipeline locally, but then deploy it in your cluster (using the installed
 scheduler, such as Slurm or PBS), or to the cloud!
 
-:arrow_right: [Written tutorial](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
+:arrow_right: [**Written tutorial**](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
 
 ## What are we doing
 
@@ -23,8 +23,8 @@ a summary (QUAST for assemblys statistics, MultiQC report).
 
 [![De novo assembly workflow](imgs/denovo-scheme.png)](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
 
-## Learning Nextflow
+## Resources
 
 * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html), blog post by Evan Floden & Alain Coletta
-* [nf-core community](https://nf-co.re/), a set of high quality bioinformatics pipeline backed by a fantastic community
-* [Video: introduction to MultiQC](https://www.youtube.com/watch?v=BbScv9TcaMg&ab_channel=PhilEwels)
+* [nf-core community](https://nf-co.re/), a set of high quality bioinformatics pipeline backed by a fantastic community: the pipelines, their YouTube channel and their Slack channels are all worth checking 
+* [Video: introduction to MultiQC](https://www.youtube.com/watch?v=BbScv9TcaMg&ab_channel=PhilEwels), MultiQC is a great tool that makes any pipeline better, and Nextflow can make great use of it
