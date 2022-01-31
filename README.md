@@ -25,7 +25,7 @@ a summary (QUAST for assemblys statistics, MultiQC report).
 
 ## Resources
 
-* [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html), blog post by Evan Floden & Alain Coletta
+* [Learning Nextflow in 2022](https://www.nextflow.io/blog/2022/learn-nextflow-in-2022.html), blog post by Evan Floden & Alain Coletta
 * [Nextflow tutorial (Carpentries)](https://carpentries-incubator.github.io/workflows-nextflow/index.html)
 * [nf-core community](https://nf-co.re/), a set of high quality bioinformatics pipeline backed by a fantastic community: the pipelines, their YouTube channel and their Slack channels are all worth checking 
 * [Video: introduction to MultiQC](https://www.youtube.com/watch?v=BbScv9TcaMg&ab_channel=PhilEwels), MultiQC is a great tool that makes any pipeline better, and Nextflow can make great use of it
