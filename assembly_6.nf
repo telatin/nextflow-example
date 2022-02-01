@@ -34,7 +34,7 @@ reads = Channel
         
 // prints to the screen and to the log
 log.info """
-         Denovo Pipeline (version 5)
+         Denovo Pipeline (version 6)
          ===================================
          reads        : ${params.reads}
          outdir       : ${params.outdir}

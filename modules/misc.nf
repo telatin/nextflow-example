@@ -14,7 +14,7 @@ process MLST {
 
     script:
     """
-    mlst --threads ${task.cpus} --json mlst.json > mlst.tab
+    mlst --threads ${task.cpus} --json mlst.json *.fa > mlst.tab
     """
 }
 
