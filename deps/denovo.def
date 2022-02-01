@@ -22,8 +22,10 @@ From: centos:centos7.6.1810
     /opt/software/conda/bin/conda config --add channels conda-forge
     /opt/software/conda/bin/conda config --add channels bioconda
     /opt/software/conda/bin/conda install -y -c conda-forge mamba
-    ls -l /etc/*.yaml
     /opt/software/conda/bin/mamba env create -p /opt/software/conda_env  --file /etc/env.yaml
     source /opt/software/conda/bin/activate /opt/software/conda_env
-
+    
+    # Ad hoc post installation refinements
+    quast-download-busco 
+    
     cd /opt/software
