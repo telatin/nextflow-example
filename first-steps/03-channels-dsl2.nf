@@ -9,7 +9,7 @@ nextflow.enable.dsl=2
 
 params.dir = 'data/*.fastq.gz'
 
-rintln " -- FILES CHANNELS -- "
+println " -- FILES CHANNELS -- "
 
 read_ch = Channel.fromPath( params.dir, checkIfExists: true )
 
