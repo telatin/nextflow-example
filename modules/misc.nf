@@ -25,7 +25,7 @@ process MLST_SUMMARY {
         mode: 'copy'
 
     input:
-    path("*")
+    path("summary.tsv")
 
     output:
     path("mlst_mqc.tsv")
