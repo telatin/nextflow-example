@@ -21,6 +21,9 @@ This typical workflow processes a set of multiple samples (filtering, assemblyin
 annotating), while for other steps will collect multiple outputs to produce
 a summary (QUAST for assemblys statistics, MultiQC report).
 
+Blue blocks are executed once per sample, while gray dataset are collector, and are executed
+once per project.
+
 ```mermaid
 graph TD;
  style input fill:#ff9,stroke:#333,stroke-width:2px
