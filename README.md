@@ -21,8 +21,21 @@ This typical workflow processes a set of multiple samples (filtering, assemblyin
 annotating), while for other steps will collect multiple outputs to produce
 a summary (QUAST for assemblys statistics, MultiQC report).
 
-[![De novo assembly workflow](imgs/denovo-scheme.png)](https://telatin.github.io/microbiome-bioinformatics/Nextflow-start/)
-
+```mermaid
+graph TD;
+ style input fill:#ff9,stroke:#333,stroke-width:2px
+ classDef collapse fill:#EEE,stroke:#333,stroke-width:2px
+ classDef multi fill:#9FF,stroke:#333,troke-width:2px
+ input(FASTQ INPUT) --> FASTP:::multi;
+ FASTP --> ASSEMBLY:::multi;
+ ASSEMBLY --> QUAST:::collapse;
+ ASSEMBLY --> PROKKA:::multi;
+ ASSEMBLY --> ABRICATE:::multi;
+ ABRICATE --> SUMMARY:::collapse;
+ SUMMARY --> MULTIQC:::collapse;
+ QUAST --> MULTIQC;
+ PROKKA --> MULTIQC;
+```
 ## Resources
 
 * [Learning Nextflow in 2022](https://www.nextflow.io/blog/2022/learn-nextflow-in-2022.html), blog post by Evan Floden & Alain Coletta
