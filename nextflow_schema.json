@@ -10,29 +10,56 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": [
-                "outdir",
-                "reads",
-                "unicycler"
-            ],
             "properties": {
                 "reads": {
                     "type": "string",
-                    "default": "None",
-                    "description": "Input reads",
+                    "default": "/workspace/nextflow-example/data/*_R{1,2}.fastq.gz",
+                    "description": "Location to PE reads",
                     "fa_icon": "fas fa-database"
                 },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
-                    "fa_icon": "fas fa-folder-open"
-                },
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "/workspace/nextflow-example/results"
+                }
+            },
+            "required": [
+                "reads",
+                "outdir"
+            ]
+        },
+        "pipeline_options": {
+            "title": "Pipeline Options",
+            "type": "object",
+            "description": "Pipeline Options",
+            "default": "",
+            "properties": {
                 "unicycler": {
                     "type": "boolean",
-                    "default": "false",
-                    "description": "Use Unicycler?",
-                    "fa_icon": "fas fa-wrench"
+                    "description": "Use Unicyler instead of Shovill",
+                    "fa_icon": "fas fa-check-circle"
+                },
+                "skip_qc": {
+                    "type": "boolean",
+                    "description": "Skip QC with FASTP ?",
+                    "fa_icon": "fas fa-check-circle"
+                },
+                "skip_prokka": {
+                    "type": "boolean",
+                    "description": "Skip Annotation with Prokka ?",
+                    "fa_icon": "fas fa-check-circle"
+                },
+                "skip_mlst": {
+                    "type": "boolean",
+                    "description": "Skip MLST with mlst ?",
+                    "fa_icon": "fas fa-check-circle"
+                },
+                "skip_amr": {
+                    "type": "boolean",
+                    "description": "Skipp AMR with abricate ?",
+                    "fa_icon": "fas fa-check-circle"
                 }
             }
         },
@@ -91,6 +118,9 @@
     "allOf": [
         {
             "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/pipeline_options"
         },
         {
             "$ref": "#/definitions/max_job_request_options"

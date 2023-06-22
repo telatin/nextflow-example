@@ -13,9 +13,6 @@
  */
 include { validateParameters; paramsHelp; paramsSummaryLog; fromSamplesheet } from 'plugin/nf-validation'
 
-params.reads = "$baseDir/data/*_R{1,2}.fastq.gz"
-params.outdir = "$baseDir/denovo"
-params.unicycler = false
 /*
   Import processes from external files
   It is common to name processes with UPPERCASE strings, to make
@@ -35,7 +32,7 @@ reads = Channel
         
 // Print help message, supply typical command line usage for the pipeline
 if (params.help) {
-   log.info paramsHelp("nextflow run my_pipeline --input input_file.csv")
+   log.info paramsHelp("nextflow quadram-institute-bioscience/nextflow-example --input input_file.csv")
    exit 0
 }
 
@@ -81,7 +78,7 @@ workflow {
     QUAST( CONTIGS.map{it -> it[1]}.collect() )
     ch_multiqc = ch_multiqc.mix( QUAST.out ).ifEmpty([])
 
-    if (!params.mlst) {
+    if (!params.skip_mlst) {
       MLST(  CONTIGS.map{it -> it[1]}.collect() )    
       MLST_SUMMARY( MLST.out.tab )
       ch_multiqc = ch_multiqc.mix( MLST_SUMMARY.out ).ifEmpty([])
