@@ -24,7 +24,14 @@ process FASTP {
 
     
     sed 's/_R1//g' report.json > ${sample_id}.fastp.json 
-    """  
+    """
+    
+    stub:
+    """
+    fastp -h
+    touch ${sample_id}.fastp.json
+    touch ${sample_id}_filt_R{1,2}.fastq.gz 
+    """
 }  
 
  
@@ -41,5 +48,9 @@ process MULTIQC {
     script:
     """
     multiqc --cl_config "prokka_fn_snames: True" . 
+    """
+    stub:
+    """
+    touch multiqc.html
     """
 } 

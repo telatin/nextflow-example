@@ -15,6 +15,10 @@ process ABRICATE {
     """
     abricate --threads ${task.cpus}  ${assembly} > ${sample_id}.tab
     """
+    stub:
+    """
+    touch ${sample_id}.tab
+    """
 }
 
 process ABRICATE_SUMMARY {
@@ -34,5 +38,10 @@ process ABRICATE_SUMMARY {
     """
     abricate --summary *.tab > summary.tsv
     abricateToMqc.py -i summary.tsv -o abricate_mqc.tsv
+    """
+    stub:
+    """
+    touch summary.tsv
+    touch abricate_mqc.tsv
     """
 }

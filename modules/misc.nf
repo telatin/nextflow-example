@@ -16,6 +16,11 @@ process MLST {
     """
     mlst --threads ${task.cpus} --json mlst.json *.fa > mlst.tab
     """
+    stub:
+    """
+    touch mlst.tab
+    touch mlst.json
+    """
 }
 
 process MLST_SUMMARY {
@@ -33,5 +38,9 @@ process MLST_SUMMARY {
     script:
     """    
     mlstToMqc.py -i summary.tsv -o mlst_mqc.tsv
+    """
+    stub:
+    """
+    touch mlst_mqc.tsv
     """
 }

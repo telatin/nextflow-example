@@ -16,6 +16,10 @@ process QUAST  {
     """
     quast --threads ${task.cpus} --output-dir quast *.fa
     """
+    stub:
+    """
+    mkdir quast
+    """
 }
 
 process SHOVILL {
@@ -38,6 +42,10 @@ process SHOVILL {
     """
     shovill --R1 ${reads[0]} --R2 ${reads[1]} --outdir shovill --cpus ${task.cpus}
     mv shovill/contigs.fa ${sample_id}.fa
+    """
+    stub:
+    """
+    touch ${sample_id}.fa
     """
 }
 
