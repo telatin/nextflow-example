@@ -1,8 +1,10 @@
 image: nfcore/gitpod:latest
 
-env:
-  NXF_VER: 23.04.1
-
+tasks:
+  - name: set NXF_VER
+    env:
+      NXF_VER: "23.04.1"
+      
 vscode:
   extensions: # based on nf-core.nf-core-extensionpack
     - codezombiech.gitignore # Language support for .gitignore files
