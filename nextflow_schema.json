@@ -11,14 +11,28 @@
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
             "required": [
-                "outdir"
+                "outdir",
+                "reads",
+                "unicycler"
             ],
             "properties": {
+                "reads": {
+                    "type": "string",
+                    "default": "None",
+                    "description": "Input reads",
+                    "fa_icon": "fas fa-database"
+                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
                     "fa_icon": "fas fa-folder-open"
+                },
+                "unicycler": {
+                    "type": "boolean",
+                    "default": "false",
+                    "description": "Use Unicycler?",
+                    "fa_icon": "fas fa-wrench"
                 }
             }
         },
@@ -84,15 +98,5 @@
         {
             "$ref": "#/definitions/generic_options"
         }
-    ],
-    "properties": {
-        "reads": {
-            "type": "string",
-            "default": null
-        },
-        "unicycler": {
-            "type": "string",
-            "default": null
-        }
-    }
+    ]
 }
