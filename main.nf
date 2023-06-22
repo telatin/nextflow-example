@@ -18,10 +18,11 @@ include { validateParameters; paramsHelp; paramsSummaryLog; fromSamplesheet } fr
   It is common to name processes with UPPERCASE strings, to make
   the program more readable (this is of course not mandatory)
 */
-include { FASTP; MULTIQC } from './modules/qc'
-include { SHOVILL; UNICYCLER; PROKKA; QUAST } from './modules/assembly'
-include { ABRICATE; ABRICATE_SUMMARY } from './modules/amr'
-include { MLST; MLST_SUMMARY } from './modules/misc'
+include { FASTP; MULTIQC; QUAST } from './modules/qc'
+include { SHOVILL; UNICYCLER } from './modules/assembly'
+include { ABRICATE; ABRICATE_SUMMARY } from './modules/annotation'
+include { MLST; MLST_SUMMARY } from './modules/annotation'
+include { PROKKA } from './modules/annotation'
 
 /* 
  *   DSL2 allows to reuse channels
@@ -48,7 +49,7 @@ workflow {
     if (!params.skip_qc) {
       FASTP( reads )
       ch_fastp_reads = FASTP.out.reads
-      ch_multiqc = ch_multiqc.mix(FASTP.out.json).ifEmpty([])
+      ch_multiqc     = ch_multiqc.mix(FASTP.out.json).ifEmpty([])
     } else {
       ch_fastp_reads = reads
     }

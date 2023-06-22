@@ -1,0 +1,9 @@
+name: qib-qc
+channels:
+  - conda-forge
+  - bioconda
+  - default
+dependencies:
+  - bioconda::fastp
+  - bioconda::multiqc
+  - bioconda::quast

@@ -3,11 +3,15 @@ process FASTP {
     /* 
        fastp process to remove adapters and low quality sequences
     */
-    tag "filter $sample_id"
+    tag "${sample_id}"
+    
+    label 'fastp'
+    label 'qc'
+    label 'process_medium'
 
     input:
     tuple val(sample_id), path(reads) 
-    
+
     output:
     tuple val(sample_id), path("${sample_id}_filt_R*.fastq.gz"), emit: reads
     path("${sample_id}.fastp.json"), emit: json
@@ -28,17 +32,44 @@ process FASTP {
     
     stub:
     """
-    fastp -h
+    fastp -?
     touch ${sample_id}.fastp.json
     touch ${sample_id}_filt_R{1,2}.fastq.gz 
     """
 }  
 
- 
+
+process QUAST  {
+    tag "quack quack 🦆"
+    
+    label 'quast'
+    label 'qc'
+    label 'process_medium'
+
+    input:
+    path("*")  
+    
+    output:
+    path("quast")
+
+    script:
+    """
+    quast --threads ${task.cpus} --output-dir quast *.fa
+    """
+    stub:
+    """
+    quast -h
+    mkdir quast
+    """
+}
 
 process MULTIQC {
-    publishDir params.outdir, mode:'copy'
-       
+    tag '🥐'
+
+    label 'multiqc'
+    label 'qc'
+    label 'process_medium'
+
     input:
     path '*'  
     
@@ -51,6 +82,7 @@ process MULTIQC {
     """
     stub:
     """
-    touch multiqc.html
+    multiqc -h
+    touch multiqc_.html
     """
 } 

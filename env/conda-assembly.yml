@@ -1,0 +1,8 @@
+name: qib-assembly
+channels:
+  - conda-forge
+  - bioconda
+  - default
+dependencies:
+  - bioconda::shovill
+  - bioconda::unicycler
