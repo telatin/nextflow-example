@@ -25,7 +25,7 @@ process PROKKA {
 }
 
 process MLST {
-    tag { sample_id }
+    tag { "💩" }
     
     label 'mlst'
     label 'annotation'

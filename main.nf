@@ -1,7 +1,7 @@
 /* 
  *   An assembly pipeline in Nextflow DSL2
  *   -----------------------------------------
-
+import java.nio.file.*
  == V6 ==
  Added MLST support
  and optional assembler (Unicycler)
@@ -12,7 +12,7 @@
  *   Input parameters 
  */
 include { validateParameters; paramsHelp; paramsSummaryLog; fromSamplesheet } from 'plugin/nf-validation'
-
+include { make_input } from './lib/utils'
 /*
   Import processes from external files
   It is common to name processes with UPPERCASE strings, to make
@@ -27,10 +27,11 @@ include { PROKKA } from './modules/annotation'
 /* 
  *   DSL2 allows to reuse channels
  */
-reads = Channel
-        .fromFilePairs(params.reads, checkIfExists: true)
+// reads = Channel
+//         .fromFilePairs(params.reads, checkIfExists: true)
 
-        
+reads = make_input(params.reads)
+
 // Print help message, supply typical command line usage for the pipeline
 if (params.help) {
    log.info paramsHelp("nextflow quadram-institute-bioscience/nextflow-example --input input_file.csv")

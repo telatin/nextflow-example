@@ -78,7 +78,7 @@ process MULTIQC {
      
     script:
     """
-    multiqc --cl_config "prokka_fn_snames: True" . 
+    multiqc --cl-config "prokka_fn_snames: True" . 
     """
     stub:
     """

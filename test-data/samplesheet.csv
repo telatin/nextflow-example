@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2
+sample-1,/workspace/nextflow-example/test-data/mock/sample-1_R1.fastq.gz,/workspace/nextflow-example/test-data/mock/sample-1_R2.fastq.gz
+sample-2,/workspace/nextflow-example/test-data/mock/sample-2_R1.fastq.gz,/workspace/nextflow-example/test-data/mock/sample-2_R2.fastq.gz
+sample-3,/workspace/nextflow-example/test-data/mock/sample-3_R1.fastq.gz,/workspace/nextflow-example/test-data/mock/sample-3_R2.fastq.gz
