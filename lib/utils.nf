@@ -78,7 +78,7 @@ def make_input(input) {
         // Input is a folder
         // System.exit(1)
         // Generate search patterns for FASTQ files
-        search_pattern = makeFastqSearchPath(input, params.illuminaSuffixes, params.fastq_exts)
+        search_pattern = makeFastqSearchPath(input, params.illumina_suffixes, params.fastq_exts)
 
         // Create a channel using the search patterns
         ch_input = Channel.fromFilePairs(search_pattern)
