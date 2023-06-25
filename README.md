@@ -30,11 +30,13 @@ graph TD;
  style input fill:#ff9,stroke:#333,stroke-width:2px
  classDef collapse fill:#EEE,stroke:#333,stroke-width:2px
  classDef multi fill:#9FF,stroke:#333,troke-width:2px
- input(FASTQ INPUT) --> FASTP:::multi;
+ input(FASTQ INPUT) --> SUBSAMPLE:::multi;
+ SUBSAMPLE --> FASTP:::multi;
  FASTP --> ASSEMBLY:::multi;
  ASSEMBLY --> QUAST:::collapse;
  ASSEMBLY --> PROKKA:::multi;
  ASSEMBLY --> ABRICATE:::multi;
+ ASSEMBLY --> MLST:::multi;
  ABRICATE --> SUMMARY:::collapse;
  SUMMARY --> MULTIQC:::collapse;
  QUAST --> MULTIQC;
