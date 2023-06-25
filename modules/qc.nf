@@ -57,7 +57,7 @@ process SUBSAMPLE {
 }
 
 process QUAST  {
-    tag "quack quack 🦆"
+    tag "quack quack"
     
     label 'quast'
     label 'qc'
