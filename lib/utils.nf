@@ -16,7 +16,6 @@ def makeFastqSearchPath(input, illuminaSuffixes, fastq_exts) {
             fastq_searchpath.add(input.toString() + '/**' + item.toString() + fq_ext.toString())
         }
     }
-    println(fastq_searchpath)
     return fastq_searchpath
 }
 
