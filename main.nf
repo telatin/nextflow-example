@@ -83,11 +83,11 @@ workflow {
     
     
     // QUAST requires all the contigs to be in the same directory
-    QUAST( CONTIGS.map{it -> it[1]}.collect() )
+    QUAST( CONTIGS.out.map{it -> it[1]}.collect() )
     ch_multiqc = ch_multiqc.mix( QUAST.out ).ifEmpty([])
 
     if (!params.skip_mlst) {
-      MLST(  CONTIGS.map{it -> it[1]}.collect() )    
+      MLST( CONTIGS.out.map{it -> it[1]}.collect() )
       MLST_SUMMARY( MLST.out.tab )
       ch_multiqc = ch_multiqc.mix( MLST_SUMMARY.out ).ifEmpty([])
     }
