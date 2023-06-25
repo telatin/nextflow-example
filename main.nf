@@ -58,7 +58,7 @@ workflow {
       ch_fastp_reads = FASTP.out.reads
       ch_multiqc     = ch_multiqc.mix(FASTP.out.json).ifEmpty([])
     } else {
-      ch_fastp_reads = reads
+      ch_fastp_reads = ch_fastp
     }
     
 
