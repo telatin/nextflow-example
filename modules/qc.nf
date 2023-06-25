@@ -38,7 +38,7 @@ process FASTP {
     """
 }  
 
-process DOWNSAMPLE {
+process SUBSAMPLE {
     tag {sample_id}
     
     label 'downsample'
@@ -50,7 +50,7 @@ process DOWNSAMPLE {
     output:
         tuple val(sample_id), path("*.sub.fastq.gz")
     script:
-    def args = task.ext.args ?: "-f 30" 
+    def args = task.ext.args ?: "-f 25" 
     """
     rasusa $args -s 2023 -i ${reads[0]} -i ${reads[1]} -o ${sample_id}_R1.sub.fastq.gz -o ${sample_id}_R2.sub.fastq.gz
     """

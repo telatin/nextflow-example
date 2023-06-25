@@ -18,7 +18,7 @@ include { make_input } from './lib/utils'
   It is common to name processes with UPPERCASE strings, to make
   the program more readable (this is of course not mandatory)
 */
-include { FASTP; MULTIQC; QUAST } from './modules/qc'
+include { FASTP; SUBSAMPLE; MULTIQC; QUAST } from './modules/qc'
 include { SHOVILL; UNICYCLER } from './modules/assembly'
 include { ABRICATE; ABRICATE_SUMMARY } from './modules/annotation'
 include { MLST; MLST_SUMMARY } from './modules/annotation'
@@ -46,9 +46,15 @@ log.info paramsSummaryLog(workflow)
 
 workflow {
     ch_multiqc = Channel.empty()
-
+    if (!params.skip_subsample) {
+      SUBSAMPLE( reads )
+      ch_fastp = SUBSAMPLE.out
+    } else {
+      ch_fastp = reads
+    }
+    
     if (!params.skip_qc) {
-      FASTP( reads )
+      FASTP( ch_fastp )
       ch_fastp_reads = FASTP.out.reads
       ch_multiqc     = ch_multiqc.mix(FASTP.out.json).ifEmpty([])
     } else {

@@ -36,6 +36,11 @@
             "description": "Pipeline Options",
             "default": "",
             "properties": {
+                "skip_subsample": {
+                    "type": "boolean",
+                    "description": "Skip subs-ampling the samples ?",
+                    "fa_icon": "fas fa-check-circle"
+                },
                 "unicycler": {
                     "type": "boolean",
                     "description": "Use Unicyler instead of Shovill",
