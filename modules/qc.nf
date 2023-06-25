@@ -81,7 +81,7 @@ process QUAST  {
 }
 
 process MULTIQC {
-    tag '🥐'
+    tag 'running'
 
     label 'multiqc'
     label 'qc'

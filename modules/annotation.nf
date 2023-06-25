@@ -25,7 +25,7 @@ process PROKKA {
 }
 
 process MLST {
-    tag { "💩" }
+    tag { "running" }
     
     label 'mlst'
     label 'annotation'
@@ -52,7 +52,7 @@ process MLST {
 }
 
 process MLST_SUMMARY {
-    tag { "β🤪" }
+    tag { "running" }
     
     label 'mlst'
     label 'annotation'
@@ -99,7 +99,7 @@ process ABRICATE {
 }
 
 process ABRICATE_SUMMARY {
-    tag { "😵‍💫" }
+    tag { "running" }
     
     label 'annotation'
 
