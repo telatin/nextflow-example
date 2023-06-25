@@ -32,7 +32,7 @@ process MLST {
     label 'process_low'
 
     input:
-    path("*.fa")  
+    path("*")  
     
     
     output:
