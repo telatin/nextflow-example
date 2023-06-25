@@ -16,12 +16,13 @@ def makeFastqSearchPath(input, illuminaSuffixes, fastq_exts) {
             fastq_searchpath.add(input.toString() + '/**' + item.toString() + fq_ext.toString())
         }
     }
+    println(fastq_searchpath)
     return fastq_searchpath
 }
 
-def isRemoteFile(String path) {
+def isBucketS3(String path) {
     // Check if the path starts with either "s3" or "https" and ends with ".csv"
-    return path.startsWith("s3") || path.startsWith("https") && path.endsWith(".csv")
+    return path.startsWith("s3")
 }
 
 def removeDoubleQuotes(String input) {
@@ -36,14 +37,16 @@ def removeDoubleQuotes(String input) {
  */
 def isFileOrFolder(String path) {
     // Convert the path to a File object
-    def file = Paths.get(path).toFile()
+    def _file = Paths.get(path).toFile()
 
-    if ((file.isFile() && file.getName().endsWith(".csv")) || isRemoteFile(path)) {
+    if (_file.getName().endsWith(".csv")) {
         // If the path is a file and ends with ".csv", return "csv"
         return "csv"
-    } else if (file.isDirectory()) {
+
+    } else if (_file.isDirectory() || isBucketS3(path)) {
         // If the path is a directory, return "folder"
         return "folder"
+
     } else {
         // If the path is neither a file ending with ".csv" nor a folder, print an error message and exit the program
         println("The path is neither a file ending with the '.csv' extension nor a folder.")
@@ -63,7 +66,7 @@ def isFileOrFolder(String path) {
 def make_input(input) {
     // Determine the type of input (csv or folder)
     input_type = isFileOrFolder(input)
-
+    println(input_type)
     if (input_type == "csv") {
         // Input is a csv file
 
@@ -74,13 +77,12 @@ def make_input(input) {
                           .map { row -> tuple(removeDoubleQuotes(row.sample_id), [removeDoubleQuotes(row.R1), removeDoubleQuotes(row.R2)])}
     } else if (input_type == "folder") {
         // Input is a folder
-
+        // System.exit(1)
         // Generate search patterns for FASTQ files
         search_pattern = makeFastqSearchPath(input, params.illuminaSuffixes, params.fastq_exts)
 
         // Create a channel using the search patterns
         ch_input = Channel.fromFilePairs(search_pattern)
     }
-    
     return ch_input
 }
