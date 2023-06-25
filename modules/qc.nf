@@ -38,6 +38,23 @@ process FASTP {
     """
 }  
 
+process DOWNSAMPLE {
+    tag {sample_id}
+    
+    label 'downsample'
+    label 'qc'
+    label 'process_medium'
+    
+    input:
+        tuple val(sample_id), path(reads)
+    output:
+        tuple val(sample_id), path("*.sub.fastq.gz")
+    script:
+    def args = task.ext.args ?: "-f 30" 
+    """
+    rasusa $args -s 2023 -i ${reads[0]} -i ${reads[1]} -o ${sample_id}_R1.sub.fastq.gz -o ${sample_id}_R2.sub.fastq.gz
+    """
+}
 
 process QUAST  {
     tag "quack quack 🦆"

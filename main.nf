@@ -31,7 +31,7 @@ include { PROKKA } from './modules/annotation'
 //         .fromFilePairs(params.reads, checkIfExists: true)
 
 reads = make_input(params.reads)
-
+reads.view()
 // Print help message, supply typical command line usage for the pipeline
 if (params.help) {
    log.info paramsHelp("nextflow quadram-institute-bioscience/nextflow-example --input input_file.csv")

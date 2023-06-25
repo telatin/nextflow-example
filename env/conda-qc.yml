@@ -6,4 +6,5 @@ channels:
 dependencies:
   - bioconda::fastp
   - bioconda::multiqc
+  - bioconda::rasusa
   - bioconda::quast
