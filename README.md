@@ -39,6 +39,7 @@ graph TD;
  ASSEMBLY --> MLST:::multi;
  ABRICATE --> SUMMARY:::collapse;
  SUMMARY --> MULTIQC:::collapse;
+ MLST --> MULTIQC:::collapse;
  QUAST --> MULTIQC;
  PROKKA --> MULTIQC;
 ```
