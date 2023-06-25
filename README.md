@@ -1,3 +1,4 @@
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thanhleviet/nextflow-example/tree/2023)
 # A simple DSL2 pipeline
 
 [Nextflow](https://www.nextflow.io/) is a workflow manager that allows the creation
