@@ -21,7 +21,7 @@ def makeFastqSearchPath(input, illuminaSuffixes, fastq_exts) {
 }
 
 def isBucketS3(String path) {
-    // Check if the path starts with either "s3" or "https" and ends with ".csv"
+    // Check if the path starts with "s3"
     return path.startsWith("s3")
 }
 
@@ -66,7 +66,7 @@ def isFileOrFolder(String path) {
 def make_input(input) {
     // Determine the type of input (csv or folder)
     input_type = isFileOrFolder(input)
-    println(input_type)
+    
     if (input_type == "csv") {
         // Input is a csv file
 
