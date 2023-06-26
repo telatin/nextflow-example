@@ -43,7 +43,7 @@ def isFileOrFolder(String path) {
         return "csv"
 
     } else if (_file.isDirectory() || isBucketS3(path)) {
-        // If the path is a directory, return "folder"
+        // If the path is a directory or s3, return "folder"
         return "folder"
 
     } else {
