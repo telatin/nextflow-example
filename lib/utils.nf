@@ -53,9 +53,6 @@ def isFileOrFolder(String path) {
     }
 }
 
-
-
-
 /**
  * Creates an input channel based on the given input path.
  *
