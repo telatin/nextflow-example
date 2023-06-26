@@ -54,6 +54,12 @@ process SUBSAMPLE {
     """
     rasusa $args -s 2023 -i ${reads[0]} -i ${reads[1]} -o ${sample_id}_R1.sub.fastq.gz -o ${sample_id}_R2.sub.fastq.gz
     """
+    stub:
+    """
+    rasusa -h
+    touch ${sample_id}_R1.sub.fastq.gz
+    touch ${sample_id}_R2.sub.fastq.gz
+    """
 }
 
 process QUAST  {
