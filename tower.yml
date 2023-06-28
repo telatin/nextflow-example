@@ -1,0 +1,5 @@
+reports:
+  multiqc_report.html:
+    display: "MultiQC HTML report"
+  "quast/quast/report.pdf":
+    display: "QUAST report"

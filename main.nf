@@ -1,7 +1,7 @@
 /* 
  *   An assembly pipeline in Nextflow DSL2
  *   -----------------------------------------
-
+import java.nio.file.*
  == V6 ==
  Added MLST support
  and optional assembler (Unicycler)
@@ -12,44 +12,29 @@
  *   Input parameters 
  */
 include { validateParameters; paramsHelp; paramsSummaryLog; fromSamplesheet } from 'plugin/nf-validation'
-
-nextflow.enable.dsl = 2
-params.reads = "$baseDir/data/*_R{1,2}.fastq.gz"
-params.outdir = "$baseDir/denovo"
-params.unicycler = false
+include { make_input } from './lib/utils'
 /*
   Import processes from external files
   It is common to name processes with UPPERCASE strings, to make
   the program more readable (this is of course not mandatory)
 */
-include { FASTP; MULTIQC } from './modules/qc'
-include { SHOVILL; UNICYCLER; PROKKA; QUAST } from './modules/assembly'
-include { ABRICATE; ABRICATE_SUMMARY } from './modules/amr'
-include { MLST; MLST_SUMMARY } from './modules/misc'
+include { FASTP; SUBSAMPLE; MULTIQC; QUAST } from './modules/qc'
+include { SHOVILL; UNICYCLER } from './modules/assembly'
+include { ABRICATE; ABRICATE_SUMMARY } from './modules/annotation'
+include { MLST; MLST_SUMMARY } from './modules/annotation'
+include { PROKKA } from './modules/annotation'
 
 /* 
  *   DSL2 allows to reuse channels
  */
-reads = Channel
-        .fromFilePairs(params.reads, checkIfExists: true)
+// reads = Channel
+//         .fromFilePairs(params.reads, checkIfExists: true)
 
-        
-// prints to the screen and to the log
-log.info """
-         Denovo Pipeline (version 5)
-         ===================================
-         reads        : ${params.reads}
-         outdir       : ${params.outdir}
-         unicycler    : ${params.unicycler}
-         """
-         .stripIndent()
-
-
-
-
+reads = make_input(params.reads)
+reads.view()
 // Print help message, supply typical command line usage for the pipeline
 if (params.help) {
-   log.info paramsHelp("nextflow run my_pipeline --input input_file.csv")
+   log.info paramsHelp("nextflow quadram-institute-bioscience/nextflow-example --input input_file.csv")
    exit 0
 }
 
@@ -60,25 +45,54 @@ validateParameters()
 log.info paramsSummaryLog(workflow)
 
 workflow {
-    
-    FASTP( reads )
-    if (params.unicycler) {
-      CONTIGS = UNICYCLER( FASTP.out.reads )
+    ch_multiqc = Channel.empty()
+    if (!params.skip_subsample) {
+      SUBSAMPLE( reads )
+      ch_fastp = SUBSAMPLE.out
     } else {
-      CONTIGS = SHOVILL( FASTP.out.reads  )
+      ch_fastp = reads
     }
     
-    ABRICATE( CONTIGS )
-    PROKKA( CONTIGS )
+    if (!params.skip_qc) {
+      FASTP( ch_fastp )
+      ch_fastp_reads = FASTP.out.reads
+      ch_multiqc     = ch_multiqc.mix(FASTP.out.json).ifEmpty([])
+    } else {
+      ch_fastp_reads = ch_fastp
+    }
+    
+
+    if (params.unicycler) {
+      CONTIGS = UNICYCLER( ch_fastp_reads )
+    } else {
+      CONTIGS = SHOVILL( ch_fastp_reads  )
+    }
+    
+    // AMR
+    if (!params.skip_amr) {
+      ABRICATE( CONTIGS )
+      ABRICATE_SUMMARY( ABRICATE.out.map{it -> it[1]}.collect() )
+      ch_multiqc = ch_multiqc.mix( ABRICATE_SUMMARY.out.multiqc ).ifEmpty([])
+    }
+    
+    // Annotation
+    if (!params.skip_prokka) {
+      PROKKA( CONTIGS )
+      ch_multiqc = ch_multiqc.mix( PROKKA.out ).ifEmpty([])
+    }
+    
     
     // QUAST requires all the contigs to be in the same directory
     QUAST( CONTIGS.map{it -> it[1]}.collect() )
-    MLST(  CONTIGS.map{it -> it[1]}.collect() )
+    ch_multiqc = ch_multiqc.mix( QUAST.out ).ifEmpty([])
 
-    // Prepare the summaries
-    ABRICATE_SUMMARY( ABRICATE.out.map{it -> it[1]}.collect() )
-    MLST_SUMMARY( MLST.out.tab )
+    if (!params.skip_mlst) {
+      MLST( CONTIGS.map{it -> it[1]}.collect() )
+      MLST_SUMMARY( MLST.out.tab )
+      ch_multiqc = ch_multiqc.mix( MLST_SUMMARY.out ).ifEmpty([])
+    }
+    
 
     // Collect all the relevant file for MultiQC
-    MULTIQC( FASTP.out.json.mix( QUAST.out , PROKKA.out, MLST_SUMMARY.out, ABRICATE_SUMMARY.out.multiqc).collect() ) 
+    MULTIQC( ch_multiqc.collect() ) 
 }

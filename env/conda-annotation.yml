@@ -1,0 +1,9 @@
+name: qib-annotation
+channels:
+  - conda-forge
+  - bioconda
+  - default
+dependencies:
+  - bioconda::abricate
+  - bioconda::prokka
+  - bioconda::mlst

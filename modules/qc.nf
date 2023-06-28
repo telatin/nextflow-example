@@ -3,11 +3,15 @@ process FASTP {
     /* 
        fastp process to remove adapters and low quality sequences
     */
-    tag "filter $sample_id"
+    tag "${sample_id}"
+    
+    label 'fastp'
+    label 'qc'
+    label 'process_medium'
 
     input:
     tuple val(sample_id), path(reads) 
-    
+
     output:
     tuple val(sample_id), path("${sample_id}_filt_R*.fastq.gz"), emit: reads
     path("${sample_id}.fastp.json"), emit: json
@@ -24,14 +28,71 @@ process FASTP {
 
     
     sed 's/_R1//g' report.json > ${sample_id}.fastp.json 
-    """  
+    """
+    
+    stub:
+    """
+    fastp -?
+    touch ${sample_id}.fastp.json
+    touch ${sample_id}_filt_R{1,2}.fastq.gz 
+    """
 }  
 
- 
+process SUBSAMPLE {
+    tag {sample_id}
+    
+    label 'downsample'
+    label 'qc'
+    label 'process_medium'
+    
+    input:
+        tuple val(sample_id), path(reads)
+    output:
+        tuple val(sample_id), path("*.sub.fastq.gz")
+    script:
+    def args = task.ext.args ?: "-f 25" 
+    """
+    rasusa $args -s 2023 -i ${reads[0]} -i ${reads[1]} -o ${sample_id}_R1.sub.fastq.gz -o ${sample_id}_R2.sub.fastq.gz
+    """
+    stub:
+    """
+    rasusa -h
+    touch ${sample_id}_R1.sub.fastq.gz
+    touch ${sample_id}_R2.sub.fastq.gz
+    """
+}
+
+process QUAST  {
+    tag "quack quack"
+    
+    label 'quast'
+    label 'qc'
+    label 'process_medium'
+
+    input:
+    path("*")  
+    
+    output:
+    path("quast")
+
+    script:
+    """
+    quast --threads ${task.cpus} --output-dir quast *.fa
+    """
+    stub:
+    """
+    quast -h
+    mkdir quast
+    """
+}
 
 process MULTIQC {
-    publishDir params.outdir, mode:'copy'
-       
+    tag 'running'
+
+    label 'multiqc'
+    label 'qc'
+    label 'process_medium'
+
     input:
     path '*'  
     
@@ -40,6 +101,11 @@ process MULTIQC {
      
     script:
     """
-    multiqc --cl_config "prokka_fn_snames: True" . 
+    multiqc --cl-config "prokka_fn_snames: True" . 
+    """
+    stub:
+    """
+    multiqc -h
+    touch multiqc_.html
     """
 } 
